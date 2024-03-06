@@ -77,12 +77,16 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (BuildContext context, int index) {
                 final Movie movie = movies[index];
                 return GestureDetector(
-                  onTap: () => {},
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailScreen(movie: movie))),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: [
-                        Image.network('https://image.tmdb.org/t/p/w500${movie.posterPath}', 
+                        Image.network(
+                          'https://image.tmdb.org/t/p/w500${movie.posterPath}',
                           height: 150,
                           width: 100,
                           fit: BoxFit.cover,
@@ -91,7 +95,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: 5,
                         ),
                         Text(
-                          movie.title.length > 14 ? '${movie.title.substring(0,10)}...' : movie.title,
+                          movie.title.length > 14
+                              ? '${movie.title.substring(0, 10)}...'
+                              : movie.title,
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                           ),
